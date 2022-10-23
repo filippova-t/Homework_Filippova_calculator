@@ -1,6 +1,7 @@
 package pro.sky.java.course2.calculator;
 
 import org.springframework.stereotype.Service;
+import pro.sky.java.course2.calculator.exception.DivideByZeroException;
 
 @Service
 public class ServiceImpl implements pro.sky.java.course2.calculator.Service {
@@ -39,9 +40,9 @@ public class ServiceImpl implements pro.sky.java.course2.calculator.Service {
         if (num1 == null || num2 == null) {
             return "Не введен один из параметров или оба параметра";
         } else if (num2 == 0) {
-            return "Делить на 0 нельзя";
+            throw new DivideByZeroException("Делить на 0 нельзя");
         } else {
-            Integer result = num1 / num2;
+            Double result = (double) num1 / (double) num2;
             return num1 + " / " + num2 + " = " + result;
         }
     }
